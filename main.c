@@ -6,15 +6,22 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 12:49:14 by magoumi           #+#    #+#             */
-/*   Updated: 2019/02/19 12:43:13 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/02/23 21:01:22 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int main(void)
+int	main(void)
 {
-	printf("hello %d %c%s\n", 10, 'w', "orld");
-	ft_printf("hello %d %c%s\n", 10, 'w', "orld");
+	unsigned int x;
+	int	*p;
+	int	a;
+
+	a = 1;
+	p = &a;
+	x = 42;
+	ft_printf("hello %i\n", 5);
+	printf("hello %o\n", 9);
 	return (0);
 }
