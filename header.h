@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 11:46:29 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/03 00:35:01 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/09 10:54:05 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct data
     int i;
     int len;
     int tmp;
+    int x;
     va_list vl;
     
 }               data;
