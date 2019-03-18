@@ -1,41 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 04:53:47 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/18 06:00:30 by magoumi          ###   ########.fr       */
+/*   Created: 2019/02/17 12:49:14 by magoumi           #+#    #+#             */
+/*   Updated: 2019/03/18 04:43:37 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void    ft_init(t_data *var, char *str)
+int	main(void)
 {
-	var->str = str;
-	var->i = 0;
-    var->len = 0;
-}
+	char x[] = "hello world";
 
-
-int	    ft_printf(char *str, ...)
-{
-    t_data var;
-
-	ft_init(&var, str);
-	va_start(var.vl, str);
-    while (str[var.i])
-    {
-        if (str[var.i] == '%')
-            var.i += ft_var(&var);
-        else
-        {
-            ft_putcharlen(str[var.i], &var);
-            var.i++;
-        }
-    }
-    va_end(var.vl);
-    return (var.len);
+	ft_printf("[mine][%+d]\n", 10); // not working case
+	printf("[sysm][%+d]\n", 10);
+	return (0);
 }

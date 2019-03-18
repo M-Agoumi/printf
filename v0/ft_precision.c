@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 02:21:24 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/13 14:01:18 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/18 04:24:15 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_precisionb(int num, int i, t_data *var)
 		end = 1;
 	}
 	if (var->str[i + end] == 's')
-		ft_putstrlen(va_arg(var->vl, char *), num, var);
+		ft_putstrlenb(va_arg(var->vl, char *), num, x, var);
 	else if (var->str[i + end] == 'd')
 		ft_putintlenb(va_arg(var->vl, int), x, num, var);
 	return (end + 2);

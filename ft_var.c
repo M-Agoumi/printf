@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_var.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 04:53:47 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/18 06:00:30 by magoumi          ###   ########.fr       */
+/*   Created: 2019/03/18 05:04:30 by magoumi           #+#    #+#             */
+/*   Updated: 2019/03/18 05:59:58 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void    ft_init(t_data *var, char *str)
+int		is_flag(char c)
 {
-	var->str = str;
-	var->i = 0;
-    var->len = 0;
+	if (c == 'd')
+		return (1);
+	return (0);
 }
 
-
-int	    ft_printf(char *str, ...)
+int		ft_var(t_data *var)
 {
-    t_data var;
+	int		x;
+	int		end;
+	char	*flag;
 
-	ft_init(&var, str);
-	va_start(var.vl, str);
-    while (str[var.i])
-    {
-        if (str[var.i] == '%')
-            var.i += ft_var(&var);
-        else
-        {
-            ft_putcharlen(str[var.i], &var);
-            var.i++;
-        }
-    }
-    va_end(var.vl);
-    return (var.len);
+	x = 0;
+	end = 0;
+	while (!is_flag(var->str[var->i + end]))
+		end++;
+	flag = ft_strsub(var->str, var->i + 1, end);
+	if (flag[end - 1] == 'd')
+		ft_int(flag, var);
+	free(flag);
+	return (ft_strlen(flag) + 1);
 }

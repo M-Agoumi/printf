@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 02:21:52 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/13 14:30:37 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/18 03:44:36 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_widthwild(char *str, int i, t_data *var, int x)
 	}
 	else
 	{
+		ft_printf("[here]");
 		ft_putspace(num, 0, var, x);
 		return (end - 1);
 	}
