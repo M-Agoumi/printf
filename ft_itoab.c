@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 06:04:15 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/18 09:48:06 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/24 04:24:28 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int 			ft_intlen(long long int n)
 
 	x = 0;
 	n = n > 0 ? n : -n; 
+	if (n > -9 && n < 9)
+		return (1);
 	while (n > 0)
 	{
 		x++;
@@ -119,10 +121,8 @@ char			*ft_itoab(long long int n)
 	int				x;
 
 	ln = ft_intlen(n);
-
 	x = n < 0 ? 1 : 0;
 	str = (char*)malloc(ln + 1 + x);
-	str[ln] = '\0';
 	if (x)
 	{
 		str[0] = '-';
@@ -137,12 +137,13 @@ char			*ft_itoab(long long int n)
 		div /= 10;
 		i++;
 	}
+	str[i + x] = '\0';
 	return (str);
 }
 
 // int main(void)
 // {
 // 	long long int x;
-// 	x = 2147483649121;
+// 	x = 1;
 // 	printf("[%s]\n", ft_itoab(x));
 // }

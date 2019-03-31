@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 12:49:14 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/18 04:43:37 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/27 09:00:26 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(void)
 {
 	char x[] = "hello world";
 
-	ft_printf("[mine][%+d]\n", 10); // not working case
-	printf("[sysm][%+d]\n", 10);
+	ft_printf("[mine][%p]\n", &x); // not working case
+	printf("[sysm][%p]\n", &x);
 	return (0);
 }

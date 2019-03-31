@@ -6,14 +6,14 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 11:46:29 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/18 04:52:57 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/27 09:01:07 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
 

@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:53:47 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/18 06:00:30 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/03/30 18:15:04 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	    ft_printf(char *str, ...)
 
 	ft_init(&var, str);
 	va_start(var.vl, str);
+    if (!str)
+        return (-1);
     while (str[var.i])
     {
         if (str[var.i] == '%')
