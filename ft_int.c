@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 05:40:44 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/30 18:29:54 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/07 01:32:49 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int		ft_precision(char *flag, t_data *var)
 	return (prec);
 }
 
-void	ft_put_spaces(int n, char *nbr, t_data *var, t_flags *x)
+static void	ft_put_spaces(int n, char *nbr, t_data *var, t_flags *x)
 {
 	if ((x->space && !x->negat && nbr[0] != '-') || (x->plus && nbr[0] != '-'))
 		n--;
@@ -161,7 +161,7 @@ void	ft_put_spaces(int n, char *nbr, t_data *var, t_flags *x)
 	}
 }
 
-void	ft_put_zero(int n, t_data *var, t_flags *x)
+static void	ft_put_zero(int n, t_data *var, t_flags *x)
 {
 
 	if (n > 0)
@@ -184,7 +184,7 @@ void	ft_put_prec(char *nbr, int len, int pre, t_data *var)
 	}
 }
 
-void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
+static void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
 {
 	int	width;
 	int	pre;
@@ -219,7 +219,7 @@ void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
 	}
 }
 
-void	ft_putnbrstr(char *nbr, t_flags *x, t_data *var)
+static void	ft_putnbrstr(char *nbr, t_flags *x, t_data *var)
 {
 	int i;
 
@@ -233,7 +233,7 @@ void	ft_putnbrstr(char *nbr, t_flags *x, t_data *var)
 	}
 }
 
-void	ft_onlywidth(t_data *var, char *flag, char *nbr, t_flags *x)
+static void	ft_onlywidth(t_data *var, char *flag, char *nbr, t_flags *x)
 {
 	int	width;
 	int	spaces;
@@ -265,7 +265,7 @@ void	ft_onlywidth(t_data *var, char *flag, char *nbr, t_flags *x)
 	}
 }
 
-void	ft_zero(t_flags *x, t_data *var, char *flag)
+static void	ft_zero(t_flags *x, t_data *var, char *flag)
 {
 	int width;
 
@@ -276,7 +276,7 @@ void	ft_zero(t_flags *x, t_data *var, char *flag)
 	return ;
 }
 
-void	ft_onlypre(t_data *var, char *flag, char *nbr, t_flags *x)
+static void	ft_onlypre(t_data *var, char *flag, char *nbr, t_flags *x)
 {
 	int	pre;
 	int	zeroes;
@@ -300,14 +300,14 @@ void	ft_onlypre(t_data *var, char *flag, char *nbr, t_flags *x)
 		ft_putstrlen(nbr, var);
 }
 
-void	ft_longlongint(char *flag, t_data *var, t_flags *x)
+static void	ft_longlongint(char *flag, t_data *var, t_flags *x)
 {
 	long long int	nb;
 	char			*nbr;
 	int				last;
 
 	nb = va_arg(var->vl, long long int);
-	nbr = flag[ft_strlen(flag) - 1] == 'd' ? ft_itoab(nb) : ft_itoab(ft_octal(nb));
+	nbr = ft_itoab(nb);
 	last = ft_strlen(flag);
 	if (nb < 0)
 		x->negat = 1;
@@ -323,7 +323,7 @@ void	ft_longlongint(char *flag, t_data *var, t_flags *x)
 		ft_putstrlen(nbr, var);
 }
 
-void	ft_longint(char *flag, t_data *var, t_flags *x)
+static void	ft_longint(char *flag, t_data *var, t_flags *x)
 {
 	long int	nb;
 	char		*nbr;
@@ -347,7 +347,7 @@ void	ft_longint(char *flag, t_data *var, t_flags *x)
 		ft_putstrlen(nbr, var);
 }
 
-void	ft_normalint(char *flag, t_data *var, t_flags *x)
+static void	ft_normalint(char *flag, t_data *var, t_flags *x)
 {
 	int		nb;
 	char	*nbr;
@@ -372,7 +372,7 @@ void	ft_normalint(char *flag, t_data *var, t_flags *x)
 		ft_putstrlen(nbr, var);
 }
 
-void	ft_int(char *flag, t_data *var)
+void		ft_int(char *flag, t_data *var)
 {
 	t_flags x;
 
