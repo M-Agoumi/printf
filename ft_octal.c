@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 00:16:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/29 02:23:07 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/29 11:06:28 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,21 +115,21 @@ static void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
 	pre = ft_precision(flag, var);
 	len = ft_strlen(nbr);
 	spaces = pre >= len ? width - pre : width - len;
-	ft_printf("[s-%d-][p-%d-][w-%d-][l-%d-]", spaces, pre, width, len);
-	if (x->pnd && ft_strcmp(nbr, "0"))
+	//ft_printf("[s-%d-][p-%d-][w-%d-][l-%d-]", spaces, pre, width, len);
+	if (x->pnd && ft_strcmp(nbr, "0") && !(pre > len))
 		spaces--;
 	if (nbr[0] == '-' && x->zero)
 		ft_putcharlen('-', var);
 	if (!x->moin)
 	{
 		ft_put_spaces(spaces, nbr,var, x);
-		if (x->pnd && ft_strcmp(nbr, "0"))
+		if (x->pnd && ft_strcmp(nbr, "0") && !(pre > len))
 			ft_putcharlen('0', var);
 		ft_put_prec(nbr, len, pre, var);
 	}
 	else
 	{
-		if (x->pnd && ft_strcmp(nbr, "0"))
+		if (x->pnd && ft_strcmp(nbr, "0") && !(pre > len))
 			ft_putcharlen('0', var);
 		ft_put_prec(nbr, len, pre, var);
 		ft_put_spaces(spaces, nbr, var, x);
@@ -230,8 +230,12 @@ static void	ft_longlongoctal(char *flag, t_data *var, t_flags *x)
 		ft_onlywidth(var, flag, nbr, x);
 	else if (x->prec && !x->width)
 		ft_onlypre(var, flag, nbr, x);
-	else//if (flag[last - 1] == 'd')
+	else
+	{
+		if (x->pnd && nb)
+			ft_putcharlen('0', var);
 		ft_putstrlen(nbr, var);
+	}
 }
 
 static void	ft_longoctal(char *flag, t_data *var, t_flags *x)
@@ -252,8 +256,12 @@ static void	ft_longoctal(char *flag, t_data *var, t_flags *x)
 		ft_onlywidth(var, flag, nbr, x);
 	else if (x->prec && !x->width)
 		ft_onlypre(var, flag, nbr, x);
-	else//if (flag[last - 1] == 'd')
+	else
+	{
+		if (x->pnd && nb)
+			ft_putcharlen('0', var);
 		ft_putstrlen(nbr, var);
+	}
 }
 
 static void	ft_normalocatl(char *flag, t_data *var, t_flags *x)

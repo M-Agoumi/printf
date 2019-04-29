@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.bu": "c"
+    },
+    "files.autoSave": "onFocusChange",
+    "editor.foldingStrategy": "indentation"
+}
