@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 15:16:36 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/27 21:54:50 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/23 23:19:38 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	ft_onlywidthstr(t_data *var, char *flag, t_flags *x)
 
 	width = ft_width(flag);
 	str = ft_nullornot(va_arg(var->vl, char *));
-	len = ft_strlen(str) == 0 ? 6 : ft_strlen(str);
+	len = ft_strlen(str);
+	//ft_printf("[%d][%d]", width, len);
 	i = -1;
 	if (x->moin) {
 		ft_putstrlen(str, var);

@@ -6,7 +6,7 @@
 #    By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 15:06:21 by magoumi           #+#    #+#              #
-#    Updated: 2019/03/13 02:36:41 by magoumi          ###   ########.fr        #
+#    Updated: 2019/04/23 22:04:42 by magoumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ all: $(NAME)
 $(NAME):
 	gcc -c -Werror -Wall -Wextra libft/*.c
 	ar rc libft.a *.o
-	gcc *.c libft.a -c
+	gcc -c *.c libft.a
 	ar rc $(NAME) *.o
 clean :
 	rm -f *.o

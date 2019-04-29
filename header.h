@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/17 11:46:29 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/07 01:26:18 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/24 14:41:17 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef	struct	s_case
 	char	space;
 	char	negat;
 	char	piont;
+	char	pnd;
 	char	star;
 }				t_flags;
 
@@ -58,9 +59,9 @@ int		ft_precision(char *flag, t_data *var);
 void	ft_address(t_data *var, char *flag);
 void	ft_octal(char *flag, t_data *var);
 void	ft_put_prec(char *nbr, int len, int pre, t_data *var);
-char	*ft_itoac(unsigned long long int n);
+char	*ft_itoac(long long int n);
 void    ft_char(char *flag, t_data *var);
 void	ft_intx(char *flag, t_data *var);
-
+int		ft_precentage(t_data *var, int i);
 
 #endif

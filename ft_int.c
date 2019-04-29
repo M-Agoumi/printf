@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 05:40:44 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/07 01:32:49 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/29 02:25:13 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_initflags(t_flags *flag)
 	flag->negat = 0;
 	flag->piont = 0;
 	flag->star = 0;
+	flag->pnd = 0;
 }
 
 // int		ft_width(char *flag);
@@ -84,6 +85,8 @@ void	ft_checkflags(t_flags *flag, char *flags)
 			flag->space = 1;
 		if (ft_checkpiont(flags))
 			flag->piont = 1;
+		if (flags[i] == '#')
+			flag->pnd = 1;
 	}
 	width = ft_width(flags);
 	if (width && width != -1)
@@ -147,12 +150,12 @@ int		ft_precision(char *flag, t_data *var)
 
 static void	ft_put_spaces(int n, char *nbr, t_data *var, t_flags *x)
 {
-	if ((x->space && !x->negat && nbr[0] != '-') || (x->plus && nbr[0] != '-'))
+	if ((x->space && !x->negat) || (x->plus && nbr[0] != '-') || x->negat)
 		n--;
 	if (n > 0)
 	{
 		if (!x->zero || (x->zero && x->moin) || (x->prec && !x->zero) ||
-		(x->piont && x->zero) || (x->prec && x->zero && !x->negat))
+		(x->piont && x->zero) || (x->prec && x->zero && !x->negat) || (x->prec && x->width))
 			while (n--)
 				ft_putcharlen(' ', var);
 		else
@@ -160,7 +163,6 @@ static void	ft_put_spaces(int n, char *nbr, t_data *var, t_flags *x)
 				ft_putcharlen('0', var);
 	}
 }
-
 static void	ft_put_zero(int n, t_data *var, t_flags *x)
 {
 
@@ -173,16 +175,28 @@ void	ft_put_prec(char *nbr, int len, int pre, t_data *var)
 {
 	int zeros;
 
+	//ft_printf("[%d][%d]", len, pre);
 	if (pre <= len)
 		ft_putstrlen(nbr, var);
 	else
 	{
+		if (nbr[0] == '-')
+		{
+			ft_putcharlen('-', var);
+			nbr++;
+		}
 		zeros = pre - len;
+		//ft_printf("[-%d]", zeros);
 		while (zeros--)
 			ft_putcharlen('0', var);
 		ft_putstrlen(nbr, var);	
 	}
 }
+///////////////////
+/*
+	BACK UP
+*/
+/////////////////
 
 static void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
 {
@@ -195,29 +209,39 @@ static void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
 	pre = ft_precision(flag, var);
 	len = ft_strlen(nbr);
 	spaces = pre >= len ? width - pre : width - len;
-	if (nbr[0] == '-' && x->zero)
-		ft_putcharlen('-', var);
+	len = nbr[0] == '-' ? len - 1 : len;
+	// if (nbr[0] == '-' && x->zero)
+	// 	ft_putcharlen('-', var);
 	if (!x->moin)
 	{
 		ft_put_spaces(spaces, nbr,var, x);
 		if (x->plus && nbr[0] != '-')
 			ft_putcharlen('+', var);
-		if (nbr[0] == '-' && x->zero)
-			ft_put_prec(nbr + 1, len, pre, var);
-		else
-			ft_put_prec(nbr, len, pre, var);
+		ft_put_prec(nbr, len, pre, var);
 	}
 	else
 	{
 		if (x->plus && nbr[0] != '-')
 			ft_putcharlen('+', var);
-		if (nbr[0] == '-' && x->zero)
-			ft_put_prec(nbr + 1, len, pre, var);
-		else
-			ft_put_prec(nbr, len, pre, var);
+		ft_put_prec(nbr, len, pre, var);
 		ft_put_spaces(spaces, nbr, var, x);
 	}
 }
+
+// static void	ft_precandwidth(t_data *var, char *flag, char *nbr, t_flags *x)
+// {
+// 	int	width;
+// 	int	pre;
+// 	int	spaces;
+// 	int len;
+
+// 	width = ft_width(flag);
+// 	pre = ft_precision(flag, var);
+// 	len = ft_strlen(nbr);
+// 	spaces = pre >= len ? width - pre : width - len;
+// 	ft_printf("[%d][%d][%d][%d]", len, pre, width, spaces);
+
+// }
 
 static void	ft_putnbrstr(char *nbr, t_flags *x, t_data *var)
 {
@@ -241,6 +265,7 @@ static void	ft_onlywidth(t_data *var, char *flag, char *nbr, t_flags *x)
 
 	width = ft_width(flag);
 	len = ft_strlen(nbr);
+	len = nbr[0] == '-' ? len - 1 : len;
 	spaces = nbr[0] == '-' ? width - len : width - len;
 	if (x->plus && nbr[0] != '-' && (!x->zero || (x->zero && x->moin)) && !x->width)
 			ft_putcharlen('+', var);
@@ -307,11 +332,13 @@ static void	ft_longlongint(char *flag, t_data *var, t_flags *x)
 	int				last;
 
 	nb = va_arg(var->vl, long long int);
-	nbr = ft_itoab(nb);
+	nbr = ft_itoac(nb);
 	last = ft_strlen(flag);
 	if (nb < 0)
 		x->negat = 1;
-	if (x->space && !x->plus && nb > 0)
+	if (x->plus && nb >= 0 && !x->piont && !(x->prec && x->width) && !(x->width && !x->moin && !x->zero) && !(x->plus && x->prec))
+		ft_putcharlen('+', var);
+	if (x->space && !x->plus && nb >= 0)
 		ft_putcharlen(' ', var);
 	if (x->prec && x->width)
 		ft_precandwidth(var, flag, nbr, x);
@@ -319,7 +346,7 @@ static void	ft_longlongint(char *flag, t_data *var, t_flags *x)
 		ft_onlywidth(var, flag, nbr, x);
 	else if (x->prec && !x->width)
 		ft_onlypre(var, flag, nbr, x);
-	else//if (flag[last - 1] == 'd')
+	else
 		ft_putstrlen(nbr, var);
 }
 
@@ -335,7 +362,9 @@ static void	ft_longint(char *flag, t_data *var, t_flags *x)
 	last = ft_strlen(flag);
 	if (nb < 0)
 		x->negat = 1;
-	if (x->space && !x->plus && nb > 0)
+	if (x->plus && nb >= 0 && !x->piont && !(x->prec && x->width) && !(x->width && !x->moin && !x->zero) && !(x->plus && x->prec))
+		ft_putcharlen('+', var);
+	if (x->space && !x->plus && nb >= 0)
 		ft_putcharlen(' ', var);
 	if (x->prec && x->width)
 		ft_precandwidth(var, flag, nbr, x);
@@ -343,7 +372,7 @@ static void	ft_longint(char *flag, t_data *var, t_flags *x)
 		ft_onlywidth(var, flag, nbr, x);
 	else if (x->prec && !x->width)
 		ft_onlypre(var, flag, nbr, x);
-	else//if (flag[last - 1] == 'd')
+	else
 		ft_putstrlen(nbr, var);
 }
 
@@ -358,9 +387,9 @@ static void	ft_normalint(char *flag, t_data *var, t_flags *x)
 	last = ft_strlen(flag);
 	if (nb < 0)
 		x->negat = 1;
-	if (x->plus && nb >= 0 && !x->piont && !(x->prec && x->width))
+	if (x->plus && nb >= 0 && !x->piont && !(x->prec && x->width) && !(x->width && !x->moin && !x->zero) && !(x->plus && x->prec))
 		ft_putcharlen('+', var);
-	if (x->space && !x->plus && nb > 0)
+	if (x->space && !x->plus && nb >= 0)
 		ft_putcharlen(' ', var);
 	if (x->prec && x->width)
 		ft_precandwidth(var, flag, nbr, x);

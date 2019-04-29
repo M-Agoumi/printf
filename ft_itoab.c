@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 06:04:15 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/24 04:24:28 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/29 02:20:41 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,14 @@ int 			ft_intlen(long long int n)
 
 long long int	ft_power(long long int n)
 {
-	int i;
 	long long int nb;
 
-	i = 1;
-	nb = 1;
+	nb = 10;
 	n = n > 0 ? n : -n;
-	while(i < n)
+	while(n)
 	{
 		nb *= 10;
-		i++;
+		n /= 10;
 	}
 	return (nb);
 }
@@ -132,7 +130,7 @@ char			*ft_itoab(long long int n)
 	i = 0;
 	while (div)
 	{
-		str[i + x] = (n / div) + '0';
+		str[i + x] = n / div + '0';
 		n = n % div;
 		div /= 10;
 		i++;
@@ -144,6 +142,6 @@ char			*ft_itoab(long long int n)
 // int main(void)
 // {
 // 	long long int x;
-// 	x = 1;
+// 	x = 90000000000;
 // 	printf("[%s]\n", ft_itoab(x));
 // }

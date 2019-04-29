@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:53:47 by magoumi           #+#    #+#             */
-/*   Updated: 2019/03/30 18:15:04 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/04/11 01:58:06 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void    ft_init(t_data *var, char *str)
 	var->i = 0;
     var->len = 0;
 }
-
 
 int	    ft_printf(char *str, ...)
 {
