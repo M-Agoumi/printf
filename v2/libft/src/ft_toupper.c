@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/08 20:39:54 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/09 17:45:09 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
-
-void    ft_putcharlen(char c, t_data *var)
+int	ft_toupper(int c)
 {
-    ft_putchar(c);
-    var->len++;
-}
-
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

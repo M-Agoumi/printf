@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/07 18:29:53 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/21 03:18:36 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-void    ft_putcharlen(char c, t_data *var)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-    ft_putchar(c);
-    var->len++;
-}
+	int i;
+	int l;
 
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	i = 0;
+	l = ft_strlen(s2);
+	while (i <= l)
+	{
+		if (s1[i] != s2[i])
+			return ((int)(unsigned char)s1[i] - (int)(unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }

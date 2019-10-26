@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/08 21:27:25 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/09 17:34:27 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-void    ft_putcharlen(char c, t_data *var)
+int	ft_isalnum(int c)
 {
-    ft_putchar(c);
-    var->len++;
-}
-
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	if (ft_isalpha(c))
+		return (1);
+	if (ft_isdigit(c))
+		return (1);
+	return (0);
 }

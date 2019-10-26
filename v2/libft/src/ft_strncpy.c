@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/06 02:20:27 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/14 16:49:19 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-void    ft_putcharlen(char c, t_data *var)
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-    ft_putchar(c);
-    var->len++;
-}
+	size_t i;
 
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < n)
+		dst[i++] = '\0';
+	return (dst);
 }

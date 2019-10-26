@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/17 16:02:19 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/17 16:03:34 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-void    ft_putcharlen(char c, t_data *var)
+void	ft_putendl(char const *s)
 {
-    ft_putchar(c);
-    var->len++;
-}
-
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	ft_putstr(s);
+	if (s)
+		ft_putchar('\n');
 }

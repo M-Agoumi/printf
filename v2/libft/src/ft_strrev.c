@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2019/03/27 08:49:54 by magoumi           #+#    #+#             */
+/*   Updated: 2019/03/27 08:58:46 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-void    ft_putcharlen(char c, t_data *var)
+char    *ft_strrev(const char *str)
 {
-    ft_putchar(c);
-    var->len++;
-}
+	size_t	len;
+	char	*rev;
+	size_t	i;
 
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	len = ft_strlen(str);
+	rev = (char *)malloc(len + 1);
+	i = 0;
+	while (i < len)
+	{
+		rev[i] = str[len - i - 1];
+		i++;
+	}
+	rev[i] = '\0';
+	return (rev);
 }

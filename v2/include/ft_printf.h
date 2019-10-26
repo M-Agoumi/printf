@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2019/10/26 06:10:27 by magoumi           #+#    #+#             */
+/*   Updated: 2019/10/26 09:50:53 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef HEADER_H
+# define HEADER_H
 
-void    ft_putcharlen(char c, t_data *var)
-{
-    ft_putchar(c);
-    var->len++;
-}
+# include "libft.h"
+# include <stdarg.h>
 
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
-}
+int		ft_printf(char *format, ...);
+int		ft_print_char(char *flag, va_list list);
+#endif

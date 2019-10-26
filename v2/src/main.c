@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 05:00:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/04/16 16:33:54 by magoumi          ###   ########.fr       */
+/*   Created: 2019/10/26 05:44:10 by magoumi           #+#    #+#             */
+/*   Updated: 2019/10/26 11:01:43 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
-void    ft_putcharlen(char c, t_data *var)
+int	main(void)
 {
-    ft_putchar(c);
-    var->len++;
-}
-
-void    ft_putstrlen(char *str, t_data *var)
-{
-    ft_putstr(str);
-    var->len += ft_strlen(str);
+	ft_printf("it's actually%2corkin\n", 'w');
+	printf("it's actually%2corkin\n", 'w');
+	return (0);
 }
