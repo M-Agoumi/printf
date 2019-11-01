@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 05:44:10 by magoumi           #+#    #+#             */
-/*   Updated: 2019/10/26 11:01:43 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/19 12:45:16 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/19 20:46:17 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_printf("it's actually%2corkin\n", 'w');
-	printf("it's actually%2corkin\n", 'w');
-	return (0);
+	unsigned char	*t;
+
+	t = b;
+	while (len)
+	{
+		*t = (unsigned char)c;
+		len--;
+		t++;
+	}
+	return ((unsigned char*)b);
 }

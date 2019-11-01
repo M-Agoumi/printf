@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 06:08:26 by magoumi           #+#    #+#             */
-/*   Updated: 2019/10/26 09:52:36 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/11/01 03:19:57 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		is_flag(char c)
 {
-	if (c == 'c')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'x' || c == 'X' || c == 'i')
 		return (1);
 	return (0);
 }
@@ -64,6 +64,14 @@ int		ft_print_conversion(char *format, int i, va_list list)
 	flg = ft_get_char_flag(format, i);
 	if (flg == 'c')
 		return (ft_print_char(flag, list));
+	if (flg == 's')
+		return (ft_print_str(flag, list));
+	if (flg == 'p')
+		return (ft_print_address(flag, list));
+	if (flg == 'd' || flg == 'i')
+		return (ft_print_int(flag, list));
+	if (flg == 'x' || flg == 'X')
+		return (ft_print_int_x(flag, list));
 	return (0);
 }
 
@@ -93,11 +101,6 @@ int		ft_printall(char *format, va_list list)
 				len += ft_print_conversion(format, i, list);
 				i += ft_skip_flag(format, i);
 			}
-			else
-			{
-				ft_putchar('%');
-				len++;
-			}
 		}
 		else
 		{
@@ -119,5 +122,5 @@ int		ft_printf(char *format, ...)
 	va_start(list, format);
 	len = ft_printall(format, list);
 	va_end(list);
-	return (0);
+	return (len);
 }
