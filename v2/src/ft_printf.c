@@ -33,9 +33,6 @@ char	*ft_get_flag(char *format, int i)
 
 int		is_conversion(char *format, int i)
 {
-	int j;
-
-	j = 0;
 	while (format[i])
 	{
 		if (is_flag(format[i]))

@@ -105,7 +105,7 @@ NAME = libftprintf.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 
 .PHONY: all, clean, fclean, re
 
