@@ -6,14 +6,15 @@
 /*   By: magoumi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 10:15:21 by magoumi           #+#    #+#             */
-/*   Updated: 2019/11/14 10:15:26 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/11/14 11:33:42 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "src/libftprintf.h"
 #include <stdio.h>
 
-int main(void){
+int main(void)
+{
 	ft_printf("hello %10.5f\n", 9.69);
 	printf("hello %10.5f\n", 9.69);
 	return (0);
