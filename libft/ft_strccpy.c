@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lcn.c                                           :+:      :+:    :+:   */
+/*   ft_strccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/10 11:11:50 by ashulha           #+#    #+#             */
-/*   Updated: 2017/03/10 11:15:30 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/25 21:04:53 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/25 21:33:18 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_lcm(unsigned int a, unsigned int b)
+size_t	ft_strccpy(char *dst, const char *src, char c)
 {
-	unsigned int lcm;
+	size_t len;
 
-	lcm = (a * b) / ft_hcf(a, b);
-	return (lcm);
+	len = 0;
+	while (src[len] != '\0' && src[len] != c)
+	{
+		dst[len] = src[len];
+		len++;
+	}
+	dst[len] = '\0';
+	return (len);
 }

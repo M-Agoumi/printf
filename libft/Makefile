@@ -3,28 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ashulha <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/03/03 13:42:59 by ashulha           #+#    #+#              #
-#    Updated: 2017/03/03 13:43:01 by ashulha          ###   ########.fr        #
+#    Created: 2018/10/04 22:41:07 by magoumi           #+#    #+#              #
+#    Updated: 2018/10/29 13:10:25 by magoumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-
-SRCS = *.c
-
+HDIR = $(wildcard *.h)
 all: $(NAME)
-
 $(NAME):
-	@gcc -Wall -Wextra -Werror -c $(SRCS)
-	@ar rc $(NAME) *.o
-	@ranlib $(NAME)
-
-clean:
-	@/bin/rm -f ft_*.o
-
-fclean: clean
-	@/bin/rm -f $(NAME)
-
-re: fclean all
+	gcc -c $(SRC) -Werror -Wall -Wextra *.c
+	ar rc $(NAME) *.o
+clean :
+	rm -f *.o
+fclean : clean
+	rm -rf $(NAME)
+re : fclean all

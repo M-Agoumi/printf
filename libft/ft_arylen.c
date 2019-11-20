@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 12:45:16 by magoumi           #+#    #+#             */
-/*   Updated: 2018/10/19 20:46:17 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/24 03:46:54 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/24 05:56:01 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	ft_arylen(char **ary)
 {
-	unsigned char	*t;
+	size_t counter;
 
-	t = b;
-	while (len)
+	counter = 0;
+	while (*ary)
 	{
-		*t = (unsigned char)c;
-		len--;
-		t++;
+		counter += ft_strlen(*ary);
+		ary++;
 	}
-	return ((unsigned char*)b);
+	return (counter);
 }

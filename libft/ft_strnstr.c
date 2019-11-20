@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   strnstr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/28 15:51:09 by ashulha           #+#    #+#             */
-/*   Updated: 2017/02/28 15:51:10 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/07 18:22:04 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/29 13:45:35 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t i;
-	size_t k;
+	size_t a;
+	size_t b;
+	size_t l;
 
-	i = 0;
-	k = 0;
-	while (little[k] != '\0')
-		k++;
-	if (k == 0)
-		return (char*)(big);
-	while (big[i] != '\0')
+	a = 0;
+	if (to_find[a] == '\0')
+		return ((char*)str);
+	while (str[a] != '\0' && len--)
 	{
-		k = 0;
-		while (big[i + k] == little[k] && little[k] != '\0')
-			k++;
-		if (little[k] == '\0')
+		b = 0;
+		l = len;
+		if (str[a] == to_find[b])
 		{
-			if (i + k > len)
-				break ;
-			return (char*)(big + i);
+			while (to_find[b] != '\0' && to_find[b] == str[a + b] && l-- + 1)
+				b++;
+			if (to_find[b] == '\0')
+				return ((char*)&str[a]);
 		}
-		i++;
+		a++;
 	}
-	return (NULL);
+	return (0);
 }

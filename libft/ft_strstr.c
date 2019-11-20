@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   strstr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <agoumihunter@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/27 22:33:59 by ashulha           #+#    #+#             */
-/*   Updated: 2017/02/27 22:34:02 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/07 18:22:04 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/29 13:53:54 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strstr(const char *str, const char *to_find)
 {
-	int i;
-	int k;
+	int a;
+	int b;
 
-	i = 0;
-	if (little[0] == '\0')
-		return (char*)(big);
-	while (big[i] != '\0')
+	a = 0;
+	if (to_find[a] == '\0')
+		return ((char*)str);
+	while (str[a] != '\0')
 	{
-		k = 0;
-		while (big[i + k] == little[k] && little[k] != '\0')
-			k++;
-		if (little[k] == '\0')
-			return (char*)(big + i);
-		i++;
+		b = 0;
+		if (str[a] == to_find[b])
+		{
+			while (to_find[b] != '\0' && to_find[b] == str[a + b])
+				b++;
+			if (to_find[b] == '\0')
+				return ((char*)&str[a]);
+		}
+		a++;
 	}
-	return (NULL);
+	return (0);
 }

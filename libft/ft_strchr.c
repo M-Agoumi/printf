@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strchr.c                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/28 16:23:46 by ashulha           #+#    #+#             */
-/*   Updated: 2017/02/28 16:23:48 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/18 18:52:53 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/25 18:57:35 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,13 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int				i;
-	unsigned char	a;
-
-	i = 0;
-	a = (unsigned char)c;
-	if (a == '\0')
+	while (*s)
 	{
-		while (s[i] != '\0')
-			i++;
-		return (char*)(s + i);
+		if (*s == (const char)c)
+			return ((char*)s);
+		s++;
 	}
-	while (s[i] != '\0')
-	{
-		if (s[i] == a)
-			return (char*)(s + i);
-		i++;
-	}
+	if (c == '\0')
+		return ((char*)s);
 	return (NULL);
 }

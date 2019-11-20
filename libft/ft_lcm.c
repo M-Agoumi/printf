@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lcm.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 12:45:16 by magoumi           #+#    #+#             */
-/*   Updated: 2018/10/19 20:46:17 by magoumi          ###   ########.fr       */
+/*   Created: 2019/11/20 15:28:27 by magoumi           #+#    #+#             */
+/*   Updated: 2019/11/20 15:28:45 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+unsigned int	ft_lcm(unsigned int a, unsigned int b)
 {
-	unsigned char	*t;
+	unsigned int lcm;
 
-	t = b;
-	while (len)
-	{
-		*t = (unsigned char)c;
-		len--;
-		t++;
-	}
-	return ((unsigned char*)b);
+	lcm = (a * b) / ft_hcf(a, b);
+	return (lcm);
 }

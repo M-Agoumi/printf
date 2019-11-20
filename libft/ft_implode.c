@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_implode.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 12:45:16 by magoumi           #+#    #+#             */
-/*   Updated: 2018/10/19 20:46:17 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/24 14:58:37 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/25 11:00:42 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_implode(char separateur, char **ary)
 {
-	unsigned char	*t;
+	int		i;
+	int		j;
+	char	*str;
+	char	*ret;
 
-	t = b;
-	while (len)
+	if (NULL == (str = (char*)malloc(ft_arylen(ary) + 1)))
+		return (NULL);
+	i = 0;
+	ret = str;
+	while (ary[i])
 	{
-		*t = (unsigned char)c;
-		len--;
-		t++;
+		j = 0;
+		while (ary[i][j])
+		{
+			*str++ = ary[i][j];
+			j++;
+		}
+		if (ary[i + 1])
+			*str++ = separateur;
+		i++;
 	}
-	return ((unsigned char*)b);
+	*str = '\0';
+	return (ret);
 }

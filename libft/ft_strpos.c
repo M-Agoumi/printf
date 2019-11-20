@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strpos.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 12:45:16 by magoumi           #+#    #+#             */
-/*   Updated: 2018/10/19 20:46:17 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/25 11:15:20 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/25 21:01:54 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	ft_strpos(char *s, char *find)
 {
-	unsigned char	*t;
+	int		i;
+	int		j;
+	int		len;
 
-	t = b;
-	while (len)
+	i = -1;
+	len = ft_strlen(find);
+	while (s[++i])
 	{
-		*t = (unsigned char)c;
-		len--;
-		t++;
+		j = 0;
+		if (s[i] == find[j])
+		{
+			while (find[j])
+			{
+				if (j + 1 == len)
+				{
+					return (i);
+				}
+				j++;
+			}
+		}
 	}
-	return ((unsigned char*)b);
+	return (0);
 }

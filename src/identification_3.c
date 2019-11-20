@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identification_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 10:17:38 by magoumi           #+#    #+#             */
-/*   Updated: 2019/11/14 10:17:40 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/11/20 15:38:32 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_pws(va_list *ap, t_flags *f)
 	}
 	while (*type.ws)
 	{
-		if ((ft_count_wsize(*type.ws) + ft_strlen(s)) > f->precision
+		if ((ft_count_wsize(*type.ws) + (int)ft_strlen(s)) > f->precision
 			&& f->precision > 0)
 			break ;
 		tmp = ft_wprint(*type.ws);
@@ -88,10 +88,10 @@ char	*ft_pp(va_list *ap, t_flags *f)
 	}
 	else
 		tmp = ft_itoa_unsigned(addr, 16);
-	if (ft_strlen(tmp) < f->precision)
+	if ((int)ft_strlen(tmp) < f->precision)
 		tmp = ft_precision(tmp, f->precision - ft_strlen(tmp));
 	s = ft_strjoin("0x", tmp);
-	if (f->zero == 1 && (f->min_width > ft_strlen(s)))
+	if (f->zero == 1 && (f->min_width > (int)ft_strlen(s)))
 	{
 		addr = f->min_width - ft_strlen(s);
 		while (addr-- > 0 && (tmp = s))

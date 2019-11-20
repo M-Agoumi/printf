@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strepace.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 12:45:16 by magoumi           #+#    #+#             */
-/*   Updated: 2018/10/19 20:46:17 by magoumi          ###   ########.fr       */
+/*   Created: 2018/10/25 10:26:43 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/25 11:02:36 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_chareplace(char *s, char rep, char with)
 {
-	unsigned char	*t;
+	int	i;
 
-	t = b;
-	while (len)
+	i = 0;
+	while (s[i])
 	{
-		*t = (unsigned char)c;
-		len--;
-		t++;
+		if (s[i] == rep)
+			s[i] = with;
+		i++;
 	}
-	return ((unsigned char*)b);
+	return (s);
 }

@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <ashulha@student.us.org>           +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/23 00:35:10 by ashulha           #+#    #+#             */
-/*   Updated: 2017/04/23 00:35:11 by ashulha          ###   ########.fr       */
+/*   Created: 2019/03/27 08:49:54 by magoumi           #+#    #+#             */
+/*   Updated: 2019/03/27 08:58:46 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrev(char *str)
+char    *ft_strrev(const char *str)
 {
-	int		length;
-	int		i;
-	char	temp;
+	size_t	len;
+	char	*rev;
+	size_t	i;
 
-	length = 0;
-	while (str[length])
-		length++;
+	len = ft_strlen(str);
+	rev = (char *)malloc(len + 1);
 	i = 0;
-	while (i < (length / 2))
+	while (i < len)
 	{
-		temp = str[i];
-		str[i] = str[length - i - 1];
-		str[length - i - 1] = temp;
+		rev[i] = str[len - i - 1];
 		i++;
 	}
-	return (str);
+	rev[i] = '\0';
+	return (rev);
 }

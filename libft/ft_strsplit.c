@@ -3,79 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/01 18:03:32 by ashulha           #+#    #+#             */
-/*   Updated: 2017/03/01 18:03:34 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/15 10:30:01 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/26 00:22:22 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_cchar(const char *str, char c, int i)
-{
-	int d;
-
-	d = 0;
-	while (str[i] != c && str[i++] != '\0')
-		d++;
-	return (d);
-}
-
-static int	ft_cword(const char *str, char c)
-{
-	int num;
-	int i;
-
-	i = 0;
-	num = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != c)
-		{
-			i = i + ft_cchar(str, c, i) - 1;
-			num++;
-		}
-		i++;
-	}
-	return (num);
-}
-
-static char	**ft_buidar(char const *s, char c, char **ar_str)
+static	int		ft_counter(const char *s, char c)
 {
 	int i;
-	int k;
 	int j;
+	int ch;
 
 	i = 0;
-	k = 0;
-	while (k < ft_cword(s, c))
+	j = 0;
+	ch = 0;
+	while (s[j])
 	{
-		j = 0;
-		if (s[i] != c)
+		if (s[j] != c && !ch)
 		{
-			ar_str[k] = (char*)malloc(sizeof(char) * ft_cchar(s, c, i) + 1);
-			while (ft_cchar(s, c, i) > 0)
-				ar_str[k][j++] = s[i++];
-			ar_str[k][j++] = '\0';
-			k++;
+			i++;
+			ch = 1;
 		}
-		i++;
+		else if (s[j] == c)
+			ch = 0;
+		j++;
 	}
-	ar_str[k] = NULL;
-	return (ar_str);
+	return (i);
 }
 
-char		**ft_strsplit(char const *s, char c)
+static	int		ft_start(const char *s, char c, int cu)
 {
-	char	**ar_str;
+	while (s[cu] == c && s[cu] != '\0')
+		cu++;
+	return (cu);
+}
+
+static int		ft_end(const char *s, char c, int cu)
+{
+	while (s[cu] != c && s[cu] != '\0')
+		cu++;
+	return (cu);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**str;
+	int		len;
+	int		i;
+	int		cu;
+	int		end;
 
 	if (!s)
 		return (NULL);
-	ar_str = (char**)malloc(sizeof(char*) * ft_cword(s, c) + 1);
-	if (ar_str == NULL)
+	i = 0;
+	len = ft_counter(s, c);
+	if (NULL == (str = (char**)malloc((len + 1) * sizeof(char*))))
 		return (NULL);
-	ft_bzero(ar_str, sizeof(char*) * ft_cword(s, c) + 1);
-	ar_str = ft_buidar(s, c, ar_str);
-	return (ar_str);
+	cu = 0;
+	while (i < len)
+	{
+		cu = ft_start(s, c, cu);
+		end = ft_end(s, c, cu + 1);
+		str[i] = ft_strsub(s, cu, end - cu);
+		cu = end;
+		i++;
+	}
+	str[i] = 0;
+	return (str);
 }

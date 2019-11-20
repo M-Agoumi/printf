@@ -3,96 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/02 16:27:07 by ashulha           #+#    #+#             */
-/*   Updated: 2017/03/02 16:27:09 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/13 19:51:46 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/14 19:58:14 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_spaces(char const *s)
+static int	is_whitespace(const char c)
 {
-	int i;
-
-	i = 0;
-	while ((s[i] == ' ' || s[i] == '\t' || s[i] == '\n') && s[i] != '\0')
-		i++;
-	return (i);
-}
-
-static int	ft_cword(char const *str)
-{
-	int i;
-	int n;
-
-	i = 0;
-	n = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-		{
-			while (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-				i++;
-			n++;
-		}
-		i++;
-	}
-	return (n);
-}
-
-static int	ft_suffix(char const *str)
-{
-	int i;
-
-	i = ft_strlen(str) - 1;
-	if (ft_cword(str) == 0 && ft_spaces(str) >= 0)
-		return (0);
-	else if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
-	{
-		while (i >= 0 && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
-			i--;
-		i = ft_strlen(str) - i - 1;
-		return (i);
-	}
+	if (c == '\t' || c == '\n' || c == ' ')
+		return (1);
 	return (0);
-}
-
-static char	*ft_build_str(char *str, char const *s)
-{
-	int i;
-	int k;
-
-	i = ft_spaces(s);
-	k = 0;
-	while (s[i] != '\0')
-	{
-		while (s[i] != '\0' && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
-			str[k++] = s[i++];
-		if (ft_cword(s + i) > 0)
-		{
-			while ((s[i] == ' ' || s[i] == '\t' ||
-				s[i] == '\n') && s[i] != '\0')
-				str[k++] = s[i++];
-		}
-		else
-			break ;
-	}
-	str[k] = '\0';
-	return (str);
 }
 
 char		*ft_strtrim(char const *s)
 {
+	size_t	i;
+	size_t	start;
+	size_t	end;
 	char	*str;
 
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	str = (char*)malloc(sizeof(char) *
-		(ft_strlen(s) - ft_suffix(s) - ft_spaces(s)) + 1);
+	i = 0;
+	while (is_whitespace(s[i]))
+		i++;
+	if (s[i] == '\0')
+		return ("\0");
+	start = i;
+	i = ft_strlen((char*)s) - 1;
+	while (is_whitespace(s[i]))
+		i--;
+	end = i - start;
+	str = ft_strsub(s, (unsigned int)start, end + 1);
 	if (str == NULL)
 		return (NULL);
-	str = ft_build_str(str, s);
 	return (str);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strschr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/28 16:50:57 by ashulha           #+#    #+#             */
-/*   Updated: 2017/02/28 16:50:59 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/18 18:59:55 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/18 19:08:24 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int				i;
-	unsigned char	k;
+	char	*tmp;
+	int		find;
 
-	i = 0;
-	k = c;
-	while (s[i] != '\0')
-		i++;
-	while (i >= 0)
+	find = 0;
+	while (*s)
 	{
-		if (s[i] == k)
-			return (char*)(s + i);
-		i--;
+		if (*s == (const char)c)
+		{
+			find = 1;
+			tmp = (char *)s;
+		}
+		s++;
 	}
+	if (find)
+		return (tmp);
+	if (c == '\0')
+		return ((char*)s);
 	return (NULL);
 }

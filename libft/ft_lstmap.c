@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashulha <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@1337.MA>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/06 20:25:38 by ashulha           #+#    #+#             */
-/*   Updated: 2017/03/06 20:25:39 by ashulha          ###   ########.fr       */
+/*   Created: 2018/10/23 22:18:26 by magoumi           #+#    #+#             */
+/*   Updated: 2018/10/25 11:00:09 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *list;
-	t_list *node_1;
-	t_list *node_2;
+	t_list	*s;
+	t_list	*ds;
+	int		i;
 
-	if (!lst)
+	ds = 0;
+	i = 0;
+	if (!(s = (t_list*)malloc(sizeof(t_list))))
 		return (NULL);
-	node_1 = f(lst);
-	list = ft_lstnew(node_1->content, node_1->content_size);
-	node_2 = list;
-	lst = lst->next;
-	while (lst != NULL)
+	while (lst)
 	{
-		node_1 = f(lst);
-		if (!(node_2->next = ft_lstnew(node_1->content, node_1->content_size)))
+		if (!(s->next = f(lst)))
 			return (NULL);
-		node_2 = node_2->next;
+		if (i == 0)
+			ds = s->next;
+		s = s->next;
 		lst = lst->next;
+		i++;
 	}
-	return (list);
+	return (ds);
 }
